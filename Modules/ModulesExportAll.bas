@@ -1,6 +1,6 @@
-Attribute VB_Name = "Modules_ExportAll"
+Attribute VB_Name = "ModulesExportAll"
 
-Sub ExportAll()
+Sub ExportAllModules()
     ' Exports all VBA modules from Normal.dotm into separate .bas files.
     ' Please change FolderName before running this macro!
     '

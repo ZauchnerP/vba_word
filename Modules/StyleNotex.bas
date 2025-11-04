@@ -1,12 +1,15 @@
-Attribute VB_Name = "Style_Notex"
+Attribute VB_Name = "StyleNotex"
 ' This module contains the macros
 ' - Run CreateNotexStyle() once to create and save the "note" style.
-' - Then run Notex1() to format all "notex" markers in the active document.
+' - Then run AssignNotex() to format all "notex" markers in the active document.
 
 Sub CreateNotexStyle()
     ' Creates a custom paragraph style named "note" in the
     ' active Word template. The style uses a small, superscript
     ' Times New Roman font and is stored as a Quick Style.
+
+    Set myTemplate = ActiveDocument.AttachedTemplate.OpenAsDocument
+    Debug.Print myTemplate
 
     On Error Resume Next
         myTemplate.Styles.Add "note"
@@ -27,18 +30,23 @@ Sub CreateNotexStyle()
         .NextParagraphStyle = "note"
     End With
 
-   ' Save Quickstyle
+   ' Save as quickstyle
     myTemplate.Styles("note").QuickStyle = True
+        
+    ' Save changes
+    myTemplate.Close SaveChanges:=wdSaveChanges
+
+    ' Update styles
+    ActiveDocument.UpdateStyles
 End Sub
 
-Sub Notex1()
+Sub AssignNotex()
     ' Searches through the document and applies the "note"
     ' style to every word that exactly matches "notex" (case-insensitive).
 
     Dim rng As Range
 
     For Each rng In ActiveDocument.Words
-        Debug.Print (rng)
 
         rng.Select
             If "notex" = LCase(Trim(rng.Text)) Then
@@ -47,5 +55,5 @@ Sub Notex1()
 
     Next rng
 
-
 End Sub
+

@@ -1,8 +1,8 @@
-Attribute VB_Name = "RemoveParagraphMarks"
+Attribute VB_Name = "ReplaceParagraphMarks"
 
 ' See shortcut assignment below!
 
-Sub RemoveParagraphMarks()
+Sub ReplaceParagraphMarks()
     ' This VBA macro removes paragraph marks (^13) from the selected text in
     ' MS Word and replaces them with spaces.
     ' It is useful when pasted text contains unwanted hard returns
@@ -32,29 +32,21 @@ Sub RemoveParagraphMarks()
     With Selection
         Selection.MoveRight Unit:=wdCharacter, Count:=1
         Selection.Expand Unit:=wdParagraph
-
-        ' Detect system language and apply corresponding style
-        If Application.LanguageSettings.LanguageID(msoLanguageIDUI) = msoLanguageIDGerman Then
-            ' Use "Standard" style for German
-            Selection.Style = ActiveDocument.Styles("Standard")
-        Else
-            ' Use "Normal" style for English or other languages
-            Selection.Style = ActiveDocument.Styles("Normal")
-        End If
+        Selection.Style = wdStyleNormal
     End With
 
 End Sub
 
-Sub Shortcut_RemoveParagraphMarks()
-    ' Create a shortcut for the function RemoveParagraphMarks().
+Sub Shortcut_ReplaceParagraphMarks()
+    ' Create a shortcut for the function ReplaceParagraphMarks().
 
     CustomizationContext = NormalTemplate
     KeyBindings.Add _
         KeyCode:=BuildKeyCode(wdKeyW, wdKeyAlt), _
         KeyCategory:=wdKeyCategoryMacro, _
-        Command:="RemoveParagraphMarks"
+        Command:="ReplaceParagraphMarks"
 
-    Debug.Print KeyBindings.Count & " keys in KeyBindings collection"
-    Debug.Print "Test W: " & KeyBindings.Key(KeyCode:=BuildKeyCode(wdKeyW, wdKeyAlt)).Command
+    ' Test shortcut assignment
+    Debug.Print "Shortcut created in NormalTemplate: Alt+W runs " & KeyBindings.Key(KeyCode:=BuildKeyCode(wdKeyW, wdKeyAlt)).Command
 
 End Sub

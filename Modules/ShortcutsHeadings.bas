@@ -1,4 +1,4 @@
-Attribute VB_Name = "RemoveParagraphMarks"
+Attribute VB_Name = "ShortcutsHeadings"
 
 Sub ShortcutsHeadings()
     ' This VBA macro creates shortcuts for applying different
