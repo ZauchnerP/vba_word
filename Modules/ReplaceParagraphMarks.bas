@@ -29,10 +29,9 @@ Sub ReplaceParagraphMarks()
     Selection.Find.Execute Replace:=wdReplaceAll
 
     ' Apply "Normal" style ("Standard" in German) to the new paragraph
-    With Selection
-        Selection.MoveRight Unit:=wdCharacter, Count:=1
-        Selection.Expand Unit:=wdParagraph
-        Selection.Style = wdStyleNormal
+    With Selection.Paragraphs(1).Range
+        .Style = wdStyleNormal
+        .Font.Color = wdColorBlack
     End With
 
 End Sub

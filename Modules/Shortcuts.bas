@@ -3,9 +3,8 @@ Attribute VB_Name = "Shortcuts"
 Sub RunShortcuts()
 ' TODO TBC
 
-Shortcut_ReplaceParagraphMarks()
-AssignNotex()
-Shortcut_SplitSentence()
-Shortcut_InsertWithoutBreak()
+    Call Shortcut_ReplaceParagraphMarks
+    Call Shortcut_SplitSentence
+    Call Shortcut_InsertWithoutBreak
 
 End Sub

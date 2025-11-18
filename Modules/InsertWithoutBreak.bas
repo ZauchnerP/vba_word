@@ -15,10 +15,13 @@ Sub InsertWithoutBreak()
     startPos = Selection.Start
     
     ' Paste
-    Selection.Paste
+    Selection.PasteAndFormat (wdFormatPlainText)
     
     ' Define range covering only the pasted content
     Set pastedRange = ActiveDocument.Range(startPos, Selection.End)
+
+    ' Apply "Normal" style ("Standard" in German) to the new paragraph
+    pastedRange.Style = ActiveDocument.Styles("Normal")
     
     ' Replace paragraph marks with spaces
     With pastedRange.Find
@@ -33,7 +36,8 @@ Sub InsertWithoutBreak()
         .MatchWildcards = False
         .Execute Replace:=wdReplaceAll
     End With
-    
+
+
 End Sub
 
 Sub Shortcut_InsertWithoutBreak()
