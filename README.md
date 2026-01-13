@@ -1,6 +1,6 @@
 # VBA scripts for MS Word
 
-While working on my PhD, I developed a collection of Microsoft Word macros that helped me write my thesis and manage literature references more efficiently. In this repository, I’m gradually uploading these macros as I revisit or reuse them. They’re quite small and might seem a bit unusual at first, but they’re practical tools that made my writing process smoother — and perhaps they’ll be useful to you, too.
+While working on my PhD, I developed a collection of Microsoft Word macros that helped me write my thesis and manage literature references more efficiently. In this repository, I’m gradually uploading these macros as I revisit or reuse them. They are not really groundbreaking and might seem a bit unusual at first, but they’re practical tools that made my writing process smoother — and perhaps they’ll be useful to you, too.
 
 # Modules and macros in this repository
 

@@ -1,5 +1,4 @@
 Attribute VB_Name = "SplitSentences"
-
 ' See shortcut assignment below!
 
 Sub SplitSentences()
@@ -17,22 +16,24 @@ Sub SplitSentences()
 
     ' Define protection patterns (to avoid false splits)
     ProtectFind = Array("et al.", _
-                        "(p.", " p.", "pp.", _
+                        "(p.", " p.", "pp.", "cf.", _
                         "i.e.", "e.g.", "o.J.", _
                         "z.B.", "z. B.", " vs.", _
                         "Fig.", "Sect.", _
                         "Chap.", "Ch.", _
                         "a.m.", "p.m.", _
-                        "etc." _
+                        ".com", _
+                        "etc.", "...", ". . ." _
                         )
     ProtectReplace = Array("et_al_TEMP", _
-                           "(p_TEMP", " p__TEMP", "pp_TEMP", _
+                           "(p_TEMP", " p__TEMP", "pp_TEMP", "cf_TEMP", _
                            "ie_TEMP", "eg_TEMP", "oJ_TEMP", _
                            "zB_TEMP", "z_B_TEMP", " v_s_TEMP", _
                            "FIG_TEMP", "sect_TEMP", _
                            "Chap_TEMP", "Ch_TEMP", _
                            "am_TEMP", "pm_TEMP", _
-                           "etc_TEMP" _
+                           "_com_TEMP", _
+                           "etc_TEMP", "___TEMP", "triple_dots_TEMP" _
                            )
 
     ' Protect fixed patterns
@@ -57,7 +58,7 @@ Sub SplitSentences()
         .MatchWildcards = False
     End With
 
-    ' Split sentences after . ? ! 
+    ' Split sentences after . ? !
     FindArray = Array(". ", "? ", "! ")
     ReplaceArray = Array(".^p", "?^p", "!^p")
 
@@ -95,7 +96,6 @@ Sub SplitSentences()
 
 End Sub
 
-
 Sub Shortcut_SplitSentence()
     CustomizationContext = NormalTemplate
     KeyBindings.Add KeyCode:=BuildKeyCode(wdKeyQ, wdKeyAlt), _
@@ -104,3 +104,5 @@ Sub Shortcut_SplitSentence()
     ' Test shortcut assignment
     Debug.Print "Shortcut created in NormalTemplate: Alt+Q runs " & KeyBindings.Key(KeyCode:=BuildKeyCode(wdKeyQ, wdKeyAlt)).Command
 End Sub
+
+
